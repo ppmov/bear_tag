@@ -6,6 +6,9 @@ public class PlayerHUD : MonoBehaviour
     {
         DrawName();
         DrawExit();
+
+        if (Game.IsConnecting)
+            DrawLoad();
     }
 
     private void DrawName()
@@ -31,6 +34,19 @@ public class PlayerHUD : MonoBehaviour
             if (GUILayout.Button("Exit"))
                 Application.Quit();
 
+        GUILayout.EndArea();
+    }
+
+    private void DrawLoad()
+    {
+        GUILayout.BeginArea(new Rect(Screen.width / 2, Screen.height / 2, 300, 300));
+
+        string dots = string.Empty;
+
+        for (int i = 0; i < Random.Range(0, 5); i++)
+            dots += '.';
+
+        GUILayout.Label("Connecting" + dots);
         GUILayout.EndArea();
     }
 }

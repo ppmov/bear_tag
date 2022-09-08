@@ -5,6 +5,7 @@ public class Game
 {
     public static Party Party => netManager.Party;
     public static bool IsStarted => NetworkClient.isConnected;
+    public static bool IsConnecting => NetworkClient.isConnecting || netManager.IsReconnecting;
     public static int MaxPlayers => netManager.maxConnections;
     public static int WinCondition => 3;
     public static string Nickname { get; set; } = string.Empty;

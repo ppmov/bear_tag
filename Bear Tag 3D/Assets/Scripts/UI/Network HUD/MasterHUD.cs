@@ -15,6 +15,9 @@ public class MasterHUD : MonoBehaviour
 
     private void Update()
     {
+        if (Game.IsConnecting)
+            return;
+
         if (Game.IsStarted)
             if (Input.GetKeyDown(KeyCode.Escape))
                 netHud.enabled = nameHud.enabled = !nameHud.enabled;
@@ -23,5 +26,6 @@ public class MasterHUD : MonoBehaviour
             netHud.enabled = Game.Nickname != string.Empty;
 
         Cursor.visible = nameHud.enabled;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 }
