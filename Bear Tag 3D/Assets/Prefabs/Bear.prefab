@@ -29,7 +29,7 @@ Transform:
   m_Children:
   - {fileID: 6392754110874283548}
   m_Father: {fileID: 7358082329671457858}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &355128962704634888
 GameObject:
@@ -982,6 +982,97 @@ Transform:
   m_Father: {fileID: 1499601999378495175}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.009703815, y: 0, z: 0}
+--- !u!1 &3055671932522354334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1685110253616984271}
+  - component: {fileID: 9082127835847070211}
+  - component: {fileID: 2925900692822205556}
+  - component: {fileID: 886403222769243905}
+  m_Layer: 6
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1685110253616984271
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055671932522354334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7358082329671457858}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &9082127835847070211
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055671932522354334}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &2925900692822205556
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055671932522354334}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 4
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.85, z: 0}
+--- !u!114 &886403222769243905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055671932522354334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a32d677fbbcab44a184ad24bfce665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnTag:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 9122336617905297210}
+        m_TargetAssemblyTypeName: CharacterNetworkAdapter, Assembly-CSharp
+        m_MethodName: ReportTag
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  skin: {fileID: 3951660639567007015}
 --- !u!1 &3070448858148608113
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,7 +1348,7 @@ Transform:
   m_Children:
   - {fileID: 3266540551894224189}
   m_Father: {fileID: 7358082329671457858}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4364534408749702749
 GameObject:
@@ -1855,14 +1946,13 @@ GameObject:
   m_Component:
   - component: {fileID: 7358082329671457858}
   - component: {fileID: 3529982288833578552}
-  - component: {fileID: 2929957019233008732}
+  - component: {fileID: 1816163391819133975}
   - component: {fileID: 2929957019233008731}
   - component: {fileID: 9122336617905297210}
-  - component: {fileID: 2929957019233008730}
   - component: {fileID: 8964991837202000774}
   - component: {fileID: 6794912064747317593}
   - component: {fileID: 6308898107926565972}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Bear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1880,6 +1970,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1685110253616984271}
   - {fileID: 1922471574461385948}
   - {fileID: 7831580808675727250}
   m_Father: {fileID: 0}
@@ -1904,7 +1995,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &2929957019233008732
+--- !u!54 &1816163391819133975
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1949,37 +2040,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   cameraPrefab: {fileID: 7970517976954493899, guid: b71058a3f8b668443a022a754da5f3c1, type: 3}
---- !u!114 &2929957019233008730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7878757588309182200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34a32d677fbbcab44a184ad24bfce665, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skin: {fileID: 3951660639567007015}
-  onDealing:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9122336617905297210}
-        m_TargetAssemblyTypeName: CharacterNetworkAdapter, Assembly-CSharp
-        m_MethodName: ScoreMyself
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onTaking:
-    m_PersistentCalls:
-      m_Calls: []
+  hitbox: {fileID: 886403222769243905}
 --- !u!114 &8964991837202000774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,9 +2071,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.01
   clientAuthority: 1
-  sendInterval: 0.05
+  sendInterval: 0.01
   syncPosition: 1
   syncRotation: 1
   syncScale: 0
@@ -2028,8 +2089,8 @@ MonoBehaviour:
   positionSensitivity: 0.01
   rotationSensitivity: 0.01
   scaleSensitivity: 0.01
-  showGizmos: 0
-  showOverlay: 0
+  showGizmos: 1
+  showOverlay: 1
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
 --- !u!114 &6308898107926565972
 MonoBehaviour:

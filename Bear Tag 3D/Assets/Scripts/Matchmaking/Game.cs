@@ -9,6 +9,7 @@ public class Game
     public static int MaxPlayers => netManager.maxConnections;
     public static int WinCondition => 3;
     public static string Nickname { get; set; } = string.Empty;
+    public static bool HasWinner { get; private set; } = false;
 
     private static readonly CustomNetworkManager netManager;
 
@@ -18,6 +19,9 @@ public class Game
 
         if (netManager == null)
             throw new UnityException("Network Manager should be Custom");
+
+        Party.Callback += CheckWinConditions;
+        Party.OnReset += () => HasWinner = false;
     }
 
     public static Player GetWinner()
@@ -29,5 +33,17 @@ public class Game
         return null;
     }
 
-    public static void Restart() => netManager.Restart();
+    public static void Restart()
+    {
+        netManager.Restart();
+    }
+
+    private static void CheckWinConditions()
+    {
+        if (HasWinner)
+            return;
+
+        if (GetWinner() != null)
+            HasWinner = true;
+    }
 }

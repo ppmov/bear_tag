@@ -5,7 +5,6 @@ public class PlayerHUD : MonoBehaviour
     private void OnGUI()
     {
         DrawName();
-        DrawExit();
 
         if (Game.IsConnecting)
             DrawLoad();
@@ -23,17 +22,6 @@ public class PlayerHUD : MonoBehaviour
             Game.Nickname = GUILayout.TextField(Game.Nickname);
 
         GUILayout.EndHorizontal();
-        GUILayout.EndArea();
-    }
-
-    private void DrawExit()
-    {
-        GUILayout.BeginArea(new Rect(310, 10, 50, 100));
-
-        if (!Game.IsStarted)
-            if (GUILayout.Button("Exit"))
-                Application.Quit();
-
         GUILayout.EndArea();
     }
 

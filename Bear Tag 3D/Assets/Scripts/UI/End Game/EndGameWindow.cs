@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -32,7 +30,7 @@ public class EndGameWindow : MonoBehaviour
 
             _isDrawn = value;
 
-            if (winner != null)
+            if (Game.HasWinner)
                 winText.text = winner.name + " is the winner!";
         }
     }
@@ -42,10 +40,10 @@ public class EndGameWindow : MonoBehaviour
     {
         winner = Game.GetWinner();
 
-        if (IsDrawn && winner == null)
+        if (IsDrawn && !Game.HasWinner)
             IsDrawn = false;
 
-        if (!IsDrawn && winner != null)
+        if (!IsDrawn && Game.HasWinner)
             IsDrawn = true;
     }
 }

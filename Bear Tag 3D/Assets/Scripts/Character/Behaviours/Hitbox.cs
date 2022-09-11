@@ -4,8 +4,7 @@ using UnityEngine.Events;
 
 public class Hitbox : MonoBehaviour
 {
-    public UnityEvent onDealing;
-    public UnityEvent onTaking;
+    public UnityEvent<Transform> OnTag;
 
     [SerializeField]
     private SkinnedMeshRenderer skin;
@@ -13,13 +12,14 @@ public class Hitbox : MonoBehaviour
 
     private void Start() => defaultMaterial = skin.material;
 
-    private void Tag() => StartCoroutine(Handling());
+    private void Update() => gameObject.tag = transform.parent.tag;
+
+    public void Tag() => StartCoroutine(Handling());
 
     private IEnumerator Handling()
     {
         skin.material = Settings.FlickeringMaterial;
         gameObject.layer = LayerMask.NameToLayer("Ghost");
-        onTaking?.Invoke();
 
         yield return new WaitForSeconds(Settings.FlickeringTime);
 
@@ -29,11 +29,7 @@ public class Hitbox : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (gameObject.CompareTag("Tagger"))
-            if (collision.gameObject.layer == LayerMask.NameToLayer("Bear"))
-            {
-                collision.gameObject.GetComponent<Hitbox>().Tag();
-                onDealing?.Invoke();
-            }
+        if (collision.gameObject.CompareTag("Tagger"))
+            OnTag?.Invoke(collision.transform.parent);
     }
 }

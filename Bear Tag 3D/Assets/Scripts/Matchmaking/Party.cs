@@ -7,9 +7,19 @@ public class Party : NetworkBehaviour
     private readonly SyncList<Player> syncList = new SyncList<Player>();
     private readonly List<Player> list = new List<Player>();
 
+    public event Action Callback;
+    public event Action OnReset;
+
     public int Count => list.Count;
     public Player this[int index] => list[index];
-    public event Action Callback;
+
+    [Server]
+    public void Score(uint tagger)
+    {
+        for (int i = 0; i < list.Count; i++)
+            if (list[i].netId == tagger)
+                syncList[i] = syncList[i].Score();
+    }
 
     [Server]
     public void Join(string name, uint id)
@@ -18,16 +28,11 @@ public class Party : NetworkBehaviour
     }
 
     [Server]
-    public void Score(uint id)
-    {
-        for (int i = 0; i < list.Count; i++)
-            if (list[i].netId == id)
-                syncList[i] = syncList[i].Score();
-    }
-
-    [Server]
     public void RemoveClient(NetworkConnectionToClient client)
     {
+        if (client == null || client.identity == null)
+            return;
+
         Player leaver = null;
 
         foreach (Player player in syncList)
@@ -56,6 +61,7 @@ public class Party : NetworkBehaviour
 
         syncList.Reset();
         list.Clear();
+        OnReset?.Invoke();
     }
 
     private void OnPlayerUpdates(SyncList<Player>.Operation operation, int itemIndex, Player oldItem, Player newItem)

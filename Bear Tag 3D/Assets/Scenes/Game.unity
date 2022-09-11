@@ -154,7 +154,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9990780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 88c37d3deca7a834d80cfd8d3cfcc510, type: 3}
+  m_Script: {fileID: 11500000, guid: 159f19f7c4f1c5248b7a82ea6ccc2acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   networkDiscovery: {fileID: 9990788}
@@ -174,7 +174,7 @@ MonoBehaviour:
   DualMode: 1
   NoDelay: 1
   Interval: 10
-  Timeout: 10000
+  Timeout: 3000
   FastResend: 2
   CongestionWindow: 0
   SendWindowSize: 4096
@@ -215,6 +215,8 @@ MonoBehaviour:
   spawnPrefabs: []
   party: {fileID: 1817455253}
   discovery: {fileID: 9990788}
+  maxRestartWaitingTime: 20
+  maxReconnectAttemptsCount: 5
   OnConnect:
     m_PersistentCalls:
       m_Calls:
@@ -342,7 +344,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 9990781}
-        m_TargetAssemblyTypeName: Mirror.Discovery.NetworkDiscoveryHUD, Mirror.Components
+        m_TargetAssemblyTypeName: CustomNetworkHUD, Assembly-CSharp
         m_MethodName: OnDiscoveredServer
         m_Mode: 0
         m_Arguments:

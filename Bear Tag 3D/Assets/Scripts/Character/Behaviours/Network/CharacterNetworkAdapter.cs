@@ -5,6 +5,8 @@ public class CharacterNetworkAdapter : NetworkBehaviour
 {
     [SerializeField]
     private GameObject cameraPrefab;
+    [SerializeField]
+    private Hitbox hitbox;
 
     public override void OnStartLocalPlayer()
     {
@@ -18,13 +20,25 @@ public class CharacterNetworkAdapter : NetworkBehaviour
     }
 
     [Command]
-    public void CmdJoin(string name, uint id) => Game.Party.Join(name, id);
+    private void CmdJoin(string name, uint id) => Game.Party.Join(name, id);
 
-    public void ScoreMyself()
+    public void ReportTag(Transform tagger)
     {
-        if (isServer)
-            Game.Party.Score(netId);
+        if (!hasAuthority)
+            return;
+
+        CmdTag(tagger.GetComponent<NetworkIdentity>().netId);
     }
+
+    [Command]
+    private void CmdTag(uint tagger)
+    {
+        Game.Party.Score(tagger);
+        RpcTag();
+    }
+
+    [ClientRpc(includeOwner = true)]
+    private void RpcTag() => hitbox.Tag();
 
     private void Start()
     {
